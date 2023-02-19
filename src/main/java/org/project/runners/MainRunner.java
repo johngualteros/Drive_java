@@ -1,14 +1,11 @@
 package org.project.runners;
 
-/*
-*  @Main Runner class is the class for execute the code and disengage on main app
-* */
-
 import org.project.services.FolderService;
 import org.project.services.MenuService;
 
-import java.util.ArrayList;
-import java.util.List;
+/*
+ *  @Main Runner class is the class for execute the code and disengage on main app
+ * */
 
 public class MainRunner {
 
@@ -24,9 +21,14 @@ public class MainRunner {
     *  static method for not instance and this method is used for start the app
     * */
     public static void start() {
+        initApplication();
+    }
+
+    public static void initApplication() {
         folderService.createMainDirectory();
         MenuService.showMainMenu();
         folderService.getAllFolderWithNotPath();
+        MenuService.ChoiceFirstOption();
     }
 
 

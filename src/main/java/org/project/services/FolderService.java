@@ -21,7 +21,6 @@ public class FolderService {
 
     String currentlyPath = "/drive";
 
-
     /*
     *  @return void
     *   this method is for create the main directory if not exists
@@ -55,6 +54,21 @@ public class FolderService {
         File file = new File(this.currentlyPath);
         String[] contentPath = file.list();
         return FolderUtils.convertArrayToMap(contentPath);
+    }
+
+    /*
+    * @return String the path of create folder
+    * @argument String path (name of folder)
+    * create the folder if not exists
+    * */
+
+    public String createFolderInCurrentlyFolder(String path) {
+        this.currentlyPath = String.format("%s/%s", this.currentlyPath, path);
+        File newFolder = new File(this.currentlyPath);
+        if(!newFolder.exists()){
+            newFolder.mkdirs();
+        }
+        return path;
     }
 
 

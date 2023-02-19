@@ -12,7 +12,7 @@ public class ShowFolderService {
     * This method is used for travel the HashMap and show the key value for users
     * */
     public static void showContentOfFolder (Map<Integer, String> contentFolder) {
-        contentFolder.forEach((key, value) -> System.out.printf("%s - %s", key , value));
+        contentFolder.forEach((key, value) -> System.out.printf("%s - %s\n", key , value));
     }
 
 }

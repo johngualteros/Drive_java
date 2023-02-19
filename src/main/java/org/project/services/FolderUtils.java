@@ -34,6 +34,8 @@ public final class FolderUtils {
 
         ShowFolderService.showContentOfFolder(contentFolder);
 
+        index.set(1);
+
         return contentFolder;
     }
 }
