@@ -49,6 +49,7 @@ public class MenuService {
         System.out.print("Select Option: ");
         option = reader.nextInt();
         reader.reset();
+        OperatievSystem.clearConsole();
         if (option == 1){
             System.out.print("Enter the name of new folder : ");
             path = reader.next();
