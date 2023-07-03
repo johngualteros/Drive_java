@@ -1,9 +1,9 @@
 package org.project.services;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.List;
+import java.io.IOException;
 import java.util.Map;
+import java.util.Objects;
 
 /*
 * Folder service class for make the methods how show folders
@@ -69,6 +69,49 @@ public class FolderService {
             newFolder.mkdirs();
         }
         return path;
+    }
+
+    /*
+    * @return String path of new file
+    * @arguments String name of file and extension TODO: validate if don't have extension
+    * method used for create a new file in currently path
+    * */
+    public String createFileInCurrentlyFolder(String path) throws IOException {
+        try{
+            this.currentlyPath = String.format("%s/%s", this.currentlyPath, path);
+            File newFile = new File(this.currentlyPath);
+            newFile.createNewFile();
+        }catch(Exception error){
+            System.out.println("can't create the file about us :" + error.getMessage().toString());
+        }
+        return path;
+    }
+
+    /*
+    * @return boolean if it can be renamed the folder
+    * @arguments (Integer keyFolder, String new name)
+    * @keyFolder is the key for search the key associate of value
+    * @NewName is the new name for rename
+    * this method has some validations and is used for rename folder or file
+    * */
+    public void  modifyNameOfFolderOrFile(Integer keyFolder, String newName) {
+        Map<Integer, String> contentOfCurrentlyPath = getAllFolderWithNotPath();
+        String nameFoundInListOfContent = FolderUtils.getNameOfItemFoundWithKey(contentOfCurrentlyPath, keyFolder);
+
+        File fileForModified = new File(nameFoundInListOfContent);
+
+        // THIS METHOD INVOCATION IS USED FOR VALIDATE IF IS FOLDER OR FILE
+        String foundedType = FolderUtils.validateIfIsFolderOrFile(nameFoundInListOfContent);
+
+        if(Objects.equals(foundedType, "FOLDER")) {
+            File modifiedFolder = new File(newName);
+            fileForModified.renameTo(modifiedFolder);
+            return;
+        }
+
+        //IN THIS SITUATION WE KNOW THE FILE FOR MODIFIED IS A FILE AND GOT EXTENSION
+        File modifiedFile = new File(newName.concat(foundedType));
+        fileForModified.renameTo(modifiedFile);
     }
 
 

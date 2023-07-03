@@ -3,6 +3,8 @@ package org.project.runners;
 import org.project.services.FolderService;
 import org.project.services.MenuService;
 
+import java.io.IOException;
+
 /*
  *  @Main Runner class is the class for execute the code and disengage on main app
  * */
@@ -20,11 +22,15 @@ public class MainRunner {
     *  @params (nothing)
     *  static method for not instance and this method is used for start the app
     * */
-    public static void start() {
+    public static void start() throws IOException {
         initApplication();
     }
 
-    public static void initApplication() {
+
+    /*
+    * starters methods for init the app
+    * */
+    public static void initApplication() throws IOException {
         folderService.createMainDirectory();
         MenuService.showMainMenu();
         folderService.getAllFolderWithNotPath();

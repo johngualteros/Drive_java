@@ -2,6 +2,7 @@ package org.project.services;
 
 import org.project.models.Folder;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /*
@@ -18,6 +19,11 @@ public class MenuService {
     * path is used for save the name the file or folder
     * */
     static String path;
+
+    /*
+    * name is used for rename file or folder
+    * */
+    static String name;
 
     /*
     * reader is used for scan the input of user
@@ -45,7 +51,7 @@ public class MenuService {
     /*
     * Choice the first option and implement all functionalities
     * */
-    public static void ChoiceFirstOption() {
+    public static void ChoiceFirstOption() throws IOException {
         System.out.print("Select Option: ");
         option = reader.nextInt();
         reader.reset();
@@ -55,11 +61,18 @@ public class MenuService {
             path = reader.next();
             folderService.createFolderInCurrentlyFolder(path);
         } else if(option == 2){
-            System.out.println(2);
+            System.out.print("Enter the name of new file and extension (example.java): ");
+            path = reader.next();
+            folderService.createFileInCurrentlyFolder(path);
         } else if(option == 3){
-            System.out.println(3);
+            return;
         } else if(option == 4){
-            System.out.println(4);
+            System.out.print("Select the number of file you wanna modifier: ");
+            option = reader.nextInt();
+            /*ENTER NAME OF NEW FOLDER*/
+            System.out.println("Enter the name of new folder");
+            name = reader.next();
+            folderService.modifyNameOfFolderOrFile(option, name);
         } else {
             System.out.println("Option not supported");
         }

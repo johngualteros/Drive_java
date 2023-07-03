@@ -38,4 +38,36 @@ public final class FolderUtils {
 
         return contentFolder;
     }
+
+    /*
+    * @return String return name of folder or file found with key parameter
+    * this method is used for search a folder value with key Integer parameter
+    * */
+    public static String getNameOfItemFoundWithKey(Map<Integer, String> mapOfContent, Integer key) {
+        if(!mapOfContent.containsKey(key)){
+            return "Key not found in the list";
+        }
+        return mapOfContent.get(key);
+    }
+
+    /*
+    * @return String return FOLDER or EXTENSION depends on if the name has extension or not
+    * this method is used for validate if the name passed in arguments has extension file or not
+    * */
+    public static String validateIfIsFolderOrFile(String name) {
+        try {
+            String extension = name.substring(name.lastIndexOf("."));
+
+            //Checks if there is any extension after the last . in your input
+            if (extension.contains(".")) {
+                System.out.println("This is the extension - " + extension);
+                return extension;
+            }
+        }catch(Exception e) {
+            System.out.println("not got extension the name: " + name);
+            return "FOLDER";
+        }
+        return name;
+    }
+
 }
